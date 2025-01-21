@@ -2,61 +2,74 @@ import burgerIcon from "../assets/images/logo.png";
 
 const content = document.getElementById("content");
 
-const populateHome = () => {
+function clearContent() {
     content.textContent = "";
+}
 
-    const logoContainer = document.createElement("div");
-    const aboutContainer = document.createElement("div");
-    const logo = document.createElement("img");
-    const logoName = document.createElement("p");
-    const aboutHeader = document.createElement("h1");
-    const aboutInfo = document.createElement("p");
+function createElement(type, options = {}) {
+    const element = document.createElement(type);
 
-    logoContainer.classList.add("logo");
-    logo.src = burgerIcon;
-    logo.alt = "logo";
-    logoName.textContent = "Restaurant";
-    aboutContainer.classList.add("about");
-    aboutHeader.textContent = "About Us"
-    aboutInfo.textContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec nunc vehicula tincidunt. Sed sit amet sapien ut libero venenatis tincidunt. Integer non felis nec nulla facilisis fermentum. Curabitur ac orci ac lorem malesuada tincidunt."
+    if (options.classes){ // array of strings
+        element.classList.add(...options.classes);
+    }
 
-    logoContainer.appendChild(logo);
-    logoContainer.appendChild(logoName);
-    content.appendChild(logoContainer);
-    aboutContainer.appendChild(aboutHeader);
-    aboutContainer.appendChild(aboutInfo);
-    content.appendChild(aboutContainer);
+    if (options.text){ // string
+        element.textContent = options.text;
+    }
+
+    if (options.attributes){ // object in the form {attribute: value}
+        Object.entries(options.attributes).forEach(([key, value]) => {
+            element.setAttribute(key, value);
+        });
+    }
+    return element;
+}
+
+const populateHome = () => {
+    clearContent();
+
+    const logoContainer = createElement("div", {classes: ["logo"]});
+    const logo = createElement("img", {attributes: {src: burgerIcon, alt: "logo",}});
+    const logoName = createElement("p", {text: "Restaurant"});
+    logoContainer.append(logo, logoName);
+
+    const aboutContainer = createElement("div", {classes: ["about"]});
+    const aboutHeader = createElement("h1", {text: "About Us"});
+    const aboutInfo = createElement("p", {
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec nunc vehicula tincidunt. Sed sit amet sapien ut libero venenatis tincidunt. Integer non felis nec nulla facilisis fermentum. Curabitur ac orci ac lorem malesuada tincidunt.",
+    });
+    aboutContainer.append(aboutHeader, aboutInfo);
+    
+
+    content.append(logoContainer, aboutContainer);
 }
 
 const populateMenu = () => {
-    content.textContent = "";
+    clearContent();
 
-    const menuContainer = document.createElement("div");
-    menuContainer.classList.add("menu-container");
+    const menuContainer = createElement("div", {classes: ["menu-container"]});
+    const menuItems = [
+        {name: "Menu item 1", description: "Description of menu item 1"},
+        {name: "Menu item 2", description: "Description of menu item 2"},
+        {name: "Menu item 3", description: "Description of menu item 3"},
+    ]
 
-    for (let i=0; i<3; i++){
-        const menuItem = document.createElement("div");
-        menuItem.classList.add("menu-item");
-        menuItem.classList.add("shadow");
+    menuItems.forEach(({name, description}) => {
+        const menuItem = createElement("div", {classes: ["menu-item", "shadow"]});
+        const itemName = createElement("h2", {text: name});
+        const itemDescription = createElement("p", {text: description});
 
-        const itemName = document.createElement("h2");
-        itemName.textContent = `Menu item ${i+1}`;
-
-        const itemDescription = document.createElement("p");
-        itemDescription.textContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec nunc vehicula tincidunt. Sed sit amet sapien ut libero venenatis tincidunt. Integer non felis nec nulla facilisis fermentum. Curabitur ac orci ac lorem malesuada tincidunt.";
-
-        menuItem.appendChild(itemName);
-        menuItem.appendChild(itemDescription);
+        menuItem.append(itemName, itemDescription);
         menuContainer.appendChild(menuItem);
-    }
+    });
+
     content.appendChild(menuContainer);
 }
 
 const populateContact = () => {
-    content.textContent = "";
+    clearContent();
 
-    const form = document.createElement("form");
-    form.classList.add("shadow");
+    const form = createElement("form", {classes: ["shadow"]});
 
     form.innerHTML = `
                 <label for="name">Name:</label>
