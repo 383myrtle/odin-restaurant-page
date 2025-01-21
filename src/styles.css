@@ -13,7 +13,6 @@ header {
     display: flex;
     padding: 20px;
     justify-content: center;
-    box-shadow: 1px 2px 3px 1px rgb(195, 167, 124);
     z-index: 1;
 }
 
@@ -51,4 +50,8 @@ button {
     align-items: center;
     background-color: rgb(250, 216, 166);
     font-size: 12px;
+}
+
+.shadow {
+    box-shadow: 1px 2px 3px 1px rgb(195, 167, 124);
 }
