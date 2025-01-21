@@ -1,5 +1,5 @@
 import "./styles.css";
-import { populateHome, populateMenu } from "./PopulateContent";
+import { populateHome, populateMenu, populateContact } from "./PopulateContent";
 
 document.addEventListener("DOMContentLoaded", populateHome);
 
@@ -9,3 +9,4 @@ const contactButton = document.getElementById("contact");
 
 homeButton.addEventListener("click", populateHome);
 menuButton.addEventListener("click", populateMenu);
+contactButton.addEventListener("click", populateContact);
