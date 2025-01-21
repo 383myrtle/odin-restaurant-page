@@ -44,6 +44,27 @@ button {
     font-weight: bold;
 }
 
+.logo img {
+    width: 100px;
+    height: 100px;
+}
+
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.menu-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+}
+
 .footer {
     display: flex;
     justify-content: center;

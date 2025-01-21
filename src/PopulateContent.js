@@ -1,7 +1,9 @@
 import burgerIcon from "../assets/images/logo.png";
 
+const content = document.getElementById("content");
+
 const populateHome = () => {
-    const content = document.getElementById("content");
+    content.textContent = "";
 
     const logoContainer = document.createElement("div");
     const aboutContainer = document.createElement("div");
@@ -26,4 +28,28 @@ const populateHome = () => {
     content.appendChild(aboutContainer);
 }
 
-export {populateHome};
+const populateMenu = () => {
+    content.textContent = "";
+
+    const menuContainer = document.createElement("div");
+    menuContainer.classList.add("menu-container");
+
+    for (let i=0; i<3; i++){
+        const menuItem = document.createElement("div");
+        menuItem.classList.add("menu-item");
+        menuItem.classList.add("shadow");
+
+        const itemName = document.createElement("h2");
+        itemName.textContent = `Menu item ${i+1}`;
+
+        const itemDescription = document.createElement("p");
+        itemDescription.textContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec nunc vehicula tincidunt. Sed sit amet sapien ut libero venenatis tincidunt. Integer non felis nec nulla facilisis fermentum. Curabitur ac orci ac lorem malesuada tincidunt.";
+
+        menuItem.appendChild(itemName);
+        menuItem.appendChild(itemDescription);
+        menuContainer.appendChild(menuItem);
+    }
+    content.appendChild(menuContainer);
+}
+
+export { populateHome, populateMenu };

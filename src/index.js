@@ -1,7 +1,11 @@
 import "./styles.css";
-import { populateHome } from "./PopulateHome";
+import { populateHome, populateMenu } from "./PopulateContent";
 
 document.addEventListener("DOMContentLoaded", populateHome);
 
-//Remove hard-coded html and add content on page load
-//Then add events for navigation (clear content and populate with new content)
+const homeButton = document.getElementById("home");
+const menuButton = document.getElementById("menu");
+const contactButton = document.getElementById("contact");
+
+homeButton.addEventListener("click", populateHome);
+menuButton.addEventListener("click", populateMenu);
